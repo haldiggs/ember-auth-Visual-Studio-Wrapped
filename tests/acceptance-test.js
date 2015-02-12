@@ -203,6 +203,14 @@ test('Accessing the protected page as an expired user', function(assert) {
     assert.equal( find('#content').text(), 'Your session has expired' );
   });
 
+  clickButton('Cancel');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/' );
+    assert.strictEqual( find(':contains(You are logged in)').length, 0 );
+    assert.strictEqual( find('button:contains(Logout)').length, 0 );
+  });
+
 });
 
 test('Accessing the admin-only page as a guest', function(assert) {
@@ -283,6 +291,14 @@ test('Accessing the admin-only page as an expired admin', function(assert) {
     assert.equal( currentURL(), '/login' );
     assert.equal( find('h4').text(), 'Please login' );
     assert.equal( find('#content').text(), 'Your session has expired' );
+  });
+
+  clickButton('Cancel');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/' );
+    assert.strictEqual( find(':contains(You are logged in)').length, 0 );
+    assert.strictEqual( find('button:contains(Logout)').length, 0 );
   });
 
 });

@@ -35,6 +35,11 @@ export default Ember.Route.extend({
     }
   },
 
+  beforeModel: function() {
+    API.token = null;
+    this.session.set('user', null);
+  },
+
   resetController: function(controller) {
     controller.setProperties({
       username: null,
