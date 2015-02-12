@@ -189,4 +189,68 @@ test('Accessing the protected page as an user', function(assert) {
 
 });
 
+test('Accessing the admin-only page as a guest', function(assert) {
 
+  visit('/');
+
+  clickLink('Admin-only Page');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/login' );
+    assert.equal( find('h4').text(), 'Please login' );
+    assert.equal( find('#content').text(), 'Please login to access this page' );
+  });
+
+  login('admin', 'secret');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/secret' );
+    assert.equal( find('h4').text(), 'Admin-only Page' );
+    assert.equal( find('#content').text(), 'Since you can see this, you must be an admin!' );
+  });
+
+});
+
+test('Accessing the admin-only page as an user', function(assert) {
+
+  login('user', 'secret');
+
+  clickLink('Admin-only Page');
+
+  andThen(function() {
+    // PENDING: Ideally, we would want the URL to change, so that the user can
+    // go back to the previous page using the back button. This is not currently
+    // the case.
+    //
+    // assert.equal( currentURL(), '/secret' );
+    assert.equal( find('h4').text(), 'An error has occured!' );
+    assert.equal( find('#content').text(), 'You are not allowed to access this page' );
+  });
+
+  clickLink('Go back');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/' );
+  });
+
+});
+
+test('Accessing the admin-only page as an admin', function(assert) {
+
+  login('admin', 'secret');
+
+  clickLink('Admin-only Page');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/secret' );
+    assert.equal( find('h4').text(), 'Admin-only Page' );
+    assert.equal( find('#content').text(), 'Since you can see this, you must be an admin!' );
+  });
+
+  clickLink('Go back');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/' );
+  });
+
+});

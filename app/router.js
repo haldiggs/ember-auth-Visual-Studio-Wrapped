@@ -9,6 +9,7 @@ Router.map(function() {
   this.route('login');
   this.route('public');
   this.route('protected');
+  this.route('secret');
 });
 
 export default Router;
