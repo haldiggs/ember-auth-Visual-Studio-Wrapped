@@ -189,6 +189,22 @@ test('Accessing the protected page as an user', function(assert) {
 
 });
 
+test('Accessing the protected page as an expired user', function(assert) {
+
+  login('user', 'secret');
+
+  clickButton('Force session expiration');
+
+  clickLink('Protected Page');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/login' );
+    assert.equal( find('h4').text(), 'Please login' );
+    assert.equal( find('#content').text(), 'Your session has expired' );
+  });
+
+});
+
 test('Accessing the admin-only page as a guest', function(assert) {
 
   visit('/');
@@ -254,3 +270,21 @@ test('Accessing the admin-only page as an admin', function(assert) {
   });
 
 });
+
+test('Accessing the admin-only page as an expired admin', function(assert) {
+
+  login('admin', 'secret');
+
+  clickButton('Force session expiration');
+
+  clickLink('Admin-only Page');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/login' );
+    assert.equal( find('h4').text(), 'Please login' );
+    assert.equal( find('#content').text(), 'Your session has expired' );
+  });
+
+});
+
+

@@ -13,6 +13,10 @@ export default Ember.Route.extend({
       });
     },
 
+    expireSession: function() {
+      API.token = 'expired';
+    },
+
     error: function(error, transition) {
       if (error.status === 'Unauthorized') {
         var loginController = this.controllerFor('login');
