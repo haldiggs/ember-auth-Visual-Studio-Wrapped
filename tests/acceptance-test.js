@@ -58,6 +58,9 @@ test('Log in with incorrect username and password', function(assert) {
     assert.equal( currentURL(), '/login' );
     assert.equal( find('h4').text(), 'Please login' );
     assert.strictEqual( find('#content').length, 0 );
+
+    // We are already on the login page, so we should hide the "Login" button!
+    assert.strictEqual( find('button:contains(Login):visible').length, 0 );
   });
 
   login('user', 'wrong');
