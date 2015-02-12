@@ -52,3 +52,23 @@ test('Accessing the public page', function(assert) {
   });
 
 });
+
+test('Accessing the protected page as a guest', function(assert) {
+
+  visit('/');
+
+  clickLink('Protected Page');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/protected' );
+    assert.equal( find('h4').text(), 'An error has occured!' );
+    assert.equal( find('#content').text(), 'Please login to access this page' );
+  });
+
+  clickLink('Go back');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/' );
+  });
+
+});
