@@ -32,3 +32,23 @@ test('Visiting the index page', function(assert) {
   });
 
 });
+
+test('Accessing the public page', function(assert) {
+
+  visit('/');
+
+  clickLink('Public Page');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/public' );
+    assert.equal( find('h4').text(), 'Public Page' );
+    assert.equal( find('#content').text(), 'Lorem ipsum dolor sit amet' );
+  });
+
+  clickLink('Go back');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/' );
+  });
+
+});
