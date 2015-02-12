@@ -11,6 +11,21 @@ function clickLink(text) {
   click('a:contains(' + text + ')');
 }
 
+function clickButton(text) {
+  click('button:contains(' + text + ')');
+}
+
+function login(username, password) {
+  if (currentURL() !== '/login') {
+    visit('/login');
+  }
+
+  fillIn('input[name=username]', username);
+  fillIn('input[name=password]', password);
+
+  clickButton('Submit');
+}
+
 module('Acceptance test', {
   beforeEach: function() {
     API.token = null;
@@ -29,6 +44,60 @@ test('Visiting the index page', function(assert) {
   andThen(function() {
     assert.equal( currentURL(), '/' );
     assert.equal( find('h2').text(), 'Ember.js Authentication Example' );
+  });
+
+});
+
+test('Log in with incorrect username and password', function(assert) {
+
+  visit('/');
+
+  clickButton('Login');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/login' );
+    assert.equal( find('h4').text(), 'Please login' );
+    assert.strictEqual( find('#content').length, 0 );
+  });
+
+  login('user', 'wrong');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/login' );
+    assert.equal( find('#content').text(), 'Incorrect username/password' );
+  });
+
+  login('zomg', 'lol');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/login' );
+    assert.equal( find('#content').text(), 'Incorrect username/password' );
+  });
+
+  clickButton('Cancel');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/' );
+  });
+
+});
+
+test('Log in as user', function(assert) {
+
+  login('user', 'secret');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/' );
+  });
+
+});
+
+test('Log in as admin', function(assert) {
+
+  login('admin', 'secret');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/' );
   });
 
 });
@@ -72,3 +141,25 @@ test('Accessing the protected page as a guest', function(assert) {
   });
 
 });
+
+test('Accessing the protected page as an user', function(assert) {
+
+  login('user', 'secret');
+
+  clickLink('Protected Page');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/protected' );
+    assert.equal( find('h4').text(), 'Protected Page' );
+    assert.equal( find('#content').text(), 'Since you can see this, you must be logged in!' );
+  });
+
+  clickLink('Go back');
+
+  andThen(function() {
+    assert.equal( currentURL(), '/' );
+  });
+
+});
+
+
