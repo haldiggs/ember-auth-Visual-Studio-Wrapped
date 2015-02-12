@@ -14,6 +14,7 @@ export default Ember.Route.extend({
 
       API.login(username, password).then(
         function(user) {
+          route.session.set('user', user);
           route.transitionTo('index');
         },
         function(error) {

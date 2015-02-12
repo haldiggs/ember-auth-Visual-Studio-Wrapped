@@ -1,3 +1,7 @@
+{{#if session.user}}
+  <h4>You are logged in as {{session.user.name}}</h4>
+{{/if}}
+
 <p>{{#link-to "public"}}Public Page{{/link-to}}</p>
 <p>{{#link-to "protected"}}Protected Page{{/link-to}}</p>
 <p>Admin-only Page</p>

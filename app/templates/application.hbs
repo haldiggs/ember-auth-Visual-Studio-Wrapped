@@ -2,4 +2,8 @@
 
 {{outlet}}
 
-<p>{{#link-to "login" tagName="button"}}Login{{/link-to}}</p>
+{{#if session.user}}
+  <p><button {{action "logout"}}>Logout</button></p>
+{{else}}
+  <p>{{#link-to "login" tagName="button"}}Login{{/link-to}}</p>
+{{/if}}
