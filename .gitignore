@@ -1,17 +1,9 @@
-# See http://help.github.com/ignore-files/ for more about ignoring files.
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
 
-# compiled output
-/dist
-/tmp
-
-# dependencies
-/node_modules
-/bower_components
-
-# misc
-/.sass-cache
-/connect.lock
-/coverage/*
-/libpeerconnection.log
-npm-debug.log
-testem.log
+/Ember-Auth-Example/.vs
+/Ember-Auth-Example/Ember-Auth-Example/bin
+/Ember-Auth-Example/Ember-Auth-Example/obj
+/Ember-Auth-Example/packages
+*.user
