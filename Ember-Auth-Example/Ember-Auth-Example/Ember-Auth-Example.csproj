@@ -66,6 +66,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="index.html" />
     <Content Include="packages.config" />
     <Content Include="Scripts\AuthApp\.bowerrc" />
     <Content Include="Scripts\AuthApp\.editorconfig" />
@@ -87,6 +88,21 @@
     <Content Include="Scripts\AuthApp\app\templates\secret.hbs" />
     <Content Include="Scripts\AuthApp\app\views\.gitkeep" />
     <Content Include="Scripts\AuthApp\bower.json" />
+    <Content Include="Scripts\AuthApp\dist\assets\ember-auth-example.css" />
+    <Content Include="Scripts\AuthApp\dist\assets\ember-auth-example.js" />
+    <Content Include="Scripts\AuthApp\dist\assets\failed.png" />
+    <Content Include="Scripts\AuthApp\dist\assets\passed.png" />
+    <Content Include="Scripts\AuthApp\dist\assets\test-loader.js" />
+    <Content Include="Scripts\AuthApp\dist\assets\test-support.css" />
+    <Content Include="Scripts\AuthApp\dist\assets\test-support.js" />
+    <Content Include="Scripts\AuthApp\dist\assets\tests.js" />
+    <Content Include="Scripts\AuthApp\dist\assets\vendor.css" />
+    <Content Include="Scripts\AuthApp\dist\assets\vendor.js" />
+    <Content Include="Scripts\AuthApp\dist\crossdomain.xml" />
+    <Content Include="Scripts\AuthApp\dist\index.html" />
+    <Content Include="Scripts\AuthApp\dist\robots.txt" />
+    <Content Include="Scripts\AuthApp\dist\testem.js" />
+    <Content Include="Scripts\AuthApp\dist\tests\index.html" />
     <Content Include="Scripts\AuthApp\MIT-LICENSE" />
     <Content Include="Scripts\AuthApp\package.json" />
     <Content Include="Scripts\AuthApp\README.md" />
@@ -94,6 +110,11 @@
     <Content Include="Scripts\AuthApp\tests\.jshintrc" />
     <Content Include="Scripts\AuthApp\tests\unit\.gitkeep" />
     <Content Include="Scripts\AuthApp\vendor\.gitkeep" />
+    <Content Include="Scripts\AuthApp\dist\assets\ember-auth-example.map" />
+    <Content Include="Scripts\AuthApp\dist\assets\ember-data.js.map" />
+    <Content Include="Scripts\AuthApp\dist\assets\test-support.map" />
+    <Content Include="Scripts\AuthApp\dist\assets\tests.map" />
+    <Content Include="Scripts\AuthApp\dist\assets\vendor.map" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -118,6 +139,7 @@
     <Content Include="Scripts\AuthApp\app\styles\app.css" />
     <Content Include="Scripts\AuthApp\Brocfile.js" />
     <Content Include="Scripts\AuthApp\config\environment.js" />
+    <Content Include="Scripts\AuthApp\ember-cli-build.js" />
     <Content Include="Scripts\AuthApp\public\crossdomain.xml" />
     <Content Include="Scripts\AuthApp\public\robots.txt" />
     <Content Include="Scripts\AuthApp\tests\acceptance-test.js" />
