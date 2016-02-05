@@ -4,58 +4,62 @@ import Ember from 'ember';
 
 var API = {
 
-  token: null,
+	token: null,
 
-  login: function(username, password) {
-    var self = this;
+	highlight: function(params){
+		alert(params);
+	},
 
-    var payload = {
-      username: username,
-      password: password
-    };
+	login: function(username, password) {
+		var self = this;
 
-    var deferred = jQuery.post('/session', payload).then(
-      function(data) {
-        self.token = data.token;
-        return data.user;
-      },
-      function(error) {
-        return { status: error.statusText, message: error.responseText };
-      }
-    );
+		var payload = {
+			username: username,
+			password: password
+		};
 
-    return Ember.RSVP.resolve(deferred);
-  },
+		var deferred = jQuery.post('/session', payload).then(
+		  function(data) {
+		  	self.token = data.token;
+		  	return data.user;
+		  },
+		  function(error) {
+		  	return { status: error.statusText, message: error.responseText };
+		  }
+		);
 
-  logout: function() {
-    var self = this;
+		return Ember.RSVP.resolve(deferred);
+	},
 
-    var settings = { type: 'DELETE', headers: { 'Authorization': 'Token token=' + this.token } };
+	logout: function() {
+		var self = this;
 
-    var deferred = jQuery.ajax('/session', settings).then(function() {
-      self.token = null;
-    });
+		var settings = { type: 'DELETE', headers: { 'Authorization': 'Token token=' + this.token } };
 
-    return Ember.RSVP.resolve(deferred);
-  },
+		var deferred = jQuery.ajax('/session', settings).then(function() {
+			self.token = null;
+		});
 
-  get: function(resource) {
-    var url = '/' + resource;
+		return Ember.RSVP.resolve(deferred);
+	},
 
-    var settings;
+	get: function(resource) {
+		var url = '/' + resource;
 
-    if (this.token) {
-      settings = { headers: { 'Authorization': 'Token token=' + this.token } };
-    } else {
-      settings = {};
-    }
+		var settings;
 
-    var deferred = jQuery.ajax(url, settings).then(null, function(error) {
-      return { status: error.statusText, message: error.responseText };
-    });
+		if (this.token) {
+			settings = { headers: { 'Authorization': 'Token token=' + this.token } };
+		} else {
+			settings = {};
+		}
 
-    return Ember.RSVP.resolve(deferred);
-  }
+		var deferred = jQuery.ajax(url, settings).then(null, function(error) {
+			return { status: error.statusText, message: error.responseText };
+		});
+
+		return Ember.RSVP.resolve(deferred);
+	}
 
 };
 

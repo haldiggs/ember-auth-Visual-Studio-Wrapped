@@ -6,5 +6,5 @@
   <p><button {{action "logout"}}>Logout</button></p>
   <p><button {{action "expireSession"}}>Force session expiration</button></p>
 {{else}}
-  <p>{{#link-to "login" tagName="button"}}Login{{/link-to}}</p>
+  <p>{{#link-to "login" tagName="button" id="btnLogin"}}Login{{/link-to}}</p>
 {{/if}}

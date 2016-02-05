@@ -137,7 +137,6 @@
     <Content Include="Scripts\AuthApp\app\routes\public.js" />
     <Content Include="Scripts\AuthApp\app\routes\secret.js" />
     <Content Include="Scripts\AuthApp\app\styles\app.css" />
-    <Content Include="Scripts\AuthApp\Brocfile.js" />
     <Content Include="Scripts\AuthApp\config\environment.js" />
     <Content Include="Scripts\AuthApp\ember-cli-build.js" />
     <Content Include="Scripts\AuthApp\public\crossdomain.xml" />
